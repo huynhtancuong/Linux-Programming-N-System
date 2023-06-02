@@ -9,6 +9,16 @@
 #include <time.h>
 #include <sys/sysmacros.h>
 
+/**
+ * Assignment 1:
+ * Tạo file filesystem.txt và ghi một đoạn dữ liệu bất kì. 
+ * Thực hiện ghi ra màn hình các thông tin: 
+ *  - Loại file, 
+ *  - Tên file, 
+ *  - thời gian chỉnh sửa file lần cuối, 
+ *  - kích thước.
+*/
+
 void print_file_type(struct stat st) {
     if (S_ISDIR(st.st_mode)) {
         printf("[Info] File is directory\n");
