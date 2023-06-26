@@ -35,12 +35,14 @@ static int __init vchar_driver_init(void)
 	int ret = 0; // giá trị kiểm tra việc cấp phát device number
 
 	/* cap phat device number */
-	vchar_drv.dev_num = MKDEV(232, 0);
-	ret = register_chrdev_region(vchar_drv.dev_num, 1, "vchar_drv");
+	vchar_drv.dev_num = 0;
+	ret = alloc_chrdev_region(vchar_drv.dev_num, 1, "vchar_drv");
 	if (ret < 0) {
-		printk("Failed to register device number statically\n");
+		printk("Failed to register device number dynamically\n");
 		goto failed_register_devnum;
 	}
+	printk("Allocated device number dynamically. Device number is (%d,%d)\n", MAJOR(vchar_drv.dev_num), MINOR(vchar_drv.dev_num));
+
 	/* tao device file */
 
 	/* cap phat bo nho cho cac cau truc du lieu cua driver va khoi tao */
